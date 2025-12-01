@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIH Portal | Enterprise Edition</title>
+    
+    <!-- 1. FONTS: Plus Jakarta Sans (The "Start-up" Font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 2. TAILWIND CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 3. PHOSPHOR ICONS -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- 4. CUSTOM CONFIG -->
+    <script>
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                },
+                extend: {
+                    colors: {
+                        primary: '#0F172A', // Slate 900
+                        accent: '#2563EB',  // Blue 600
+                        success: '#10B981', // Emerald 500
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth transitions */
+        .page-transition {
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Glassmorphism for cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 h-screen overflow-hidden selection:bg-accent selection:text-white">
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2"></div>
+
+    <!-- ========================= 
+         VIEW 1: ENTERPRISE LOGIN 
+         ========================= -->
+    <div id="view-auth" class="flex w-full h-full bg-white">
+        <!-- Left: Brand Image (Hidden on Mobile) -->
+        <div class="hidden lg:flex w-1/2 bg-slate-900 relative items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20"></div>
+            <div class="relative z-10 p-12 text-white max-w-lg">
+                <div class="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-6">
+                    <i class="ph-bold ph-student text-2xl"></i>
+                </div>
+                <h1 class="text-4xl font-bold mb-4">Digitize. Monetize. Globalize.</h1>
+                <p class="text-slate-300 text-lg leading-relaxed">Join the Digital Intellectual Hub. Access thousands of research papers, automate your project clearance, and connect with the global academic community.</p>
+                
+                <div class="mt-8 flex gap-4">
+                    <div class="flex -space-x-3">
+                        <img class="w-10 h-10 rounded-full border-2 border-slate-900" src="https://i.pravatar.cc/100?img=1" alt="">
+                        <img class="w-10 h-10 rounded-full border-2 border-slate-900" src="https://i.pravatar.cc/100?img=2" alt="">
+                        <img class="w-10 h-10 rounded-full border-2 border-slate-900" src="https://i.pravatar.cc/100?img=3" alt="">
+                    </div>
+                    <div class="text-sm flex flex-col justify-center">
+                        <span class="font-bold text-white">2,400+ Students</span>
+                        <span class="text-slate-400">Already on the platform</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Login Form -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 relative">
+            <div class="w-full max-w-md space-y-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Welcome back</h2>
+                    <p class="mt-2 text-slate-500">Please enter your details to access your workspace.</p>
+                </div>
+
+                <form onsubmit="event.preventDefault(); handleLogin();" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">College ID / Matric No</label>
+                        <div class="relative">
+                            <input type="text" value="KSCNM/NUR/25/084" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-accent focus:border-accent outline-none transition font-mono text-sm" readonly>
+                            <i class="ph ph-identification-card absolute left-3 top-3.5 text-slate-400 text-lg"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                        <div class="relative">
+                            <input type="password" value="password" class="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-accent focus:border-accent outline-none transition">
+                            <i class="ph ph-lock-key absolute left-3 top-3.5 text-slate-400 text-lg"></i>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="rounded border-gray-300 text-accent focus:ring-accent">
+                            <span class="text-slate-600">Remember me</span>
+                        </label>
+                        <a href="#" class="font-semibold text-accent hover:text-blue-700">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl hover:bg-slate-800 transform active:scale-[0.98] transition-all shadow-lg shadow-slate-900/20">
+                        Sign In to Portal
+                    </button>
+                </form>
+
+                <p class="text-center text-xs text-slate-400 mt-8">
+                    Protected by reCAPTCHA and subject to the F-Bridge Privacy Policy.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================= 
+         VIEW 2: APP DASHBOARD 
+         ========================= -->
+    <div id="view-app" class="hidden h-full flex bg-slate-50">
+        
+        <!-- SIDEBAR -->
+        <aside class="w-72 bg-white border-r border-slate-200 hidden md:flex flex-col z-20">
+            <div class="p-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white">
+                        <i class="ph-bold ph-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 leading-none">DIH Portal</h2>
+                        <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Student View</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 space-y-1">
+                <div class="text-xs font-bold text-slate-400 uppercase px-3 mb-2 mt-4">Main Menu</div>
+                
+                <button onclick="nav('tab-dashboard', this)" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition group active-nav bg-slate-100 text-slate-900 font-medium">
+                    <i class="ph ph-squares-four text-lg"></i> Overview
+                </button>
+                
+                <button onclick="nav('tab-topics', this)" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition group">
+                    <i class="ph ph-check-circle text-lg"></i> Topic Approval
+                    <span class="ml-auto bg-orange-100 text-orange-600 text-[10px] font-bold px-2 py-0.5 rounded-full">Action</span>
+                </button>
+
+                <button onclick="nav('tab-library', this)" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition group">
+                    <i class="ph ph-books text-lg"></i> Resource Library
+                </button>
+
+                <div class="text-xs font-bold text-slate-400 uppercase px-3 mb-2 mt-8">Personal</div>
+                
+                <button class="nav-item w-full flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition group">
+                    <i class="ph ph-wallet text-lg"></i> My Wallet
+                </button>
+                <button class="nav-item w-full flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition group">
+                    <i class="ph ph-gear text-lg"></i> Settings
+                </button>
+            </nav>
+
+            <div class="p-4 border-t border-slate-100">
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm">OO</div>
+                    <div class="flex-1 overflow-hidden">
+                        <p class="text-sm font-bold text-slate-900 truncate">Ogirima Obey</p>
+                        <p class="text-xs text-slate-500 truncate">Nursing • 400L</p>
+                    </div>
+                    <button onclick="window.location.reload()" class="text-slate-400 hover:text-red-500 transition"><i class="ph ph-sign-out"></i></button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN AREA -->
+        <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+            
+            <!-- Mobile Header -->
+            <header class="md:hidden h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 z-20">
+                <span class="font-bold text-slate-900">DIH Portal</span>
+                <button class="text-slate-500 text-2xl"><i class="ph ph-list"></i></button>
+            </header>
+
+            <!-- CONTENT SCROLL AREA -->
+            <div class="flex-1 overflow-y-auto p-4 md:p-8 space-y-8 no-scrollbar">
+                
+                <!-- 1. DASHBOARD TAB -->
+                <div id="tab-dashboard" class="page-transition block">
+                    <header class="mb-8">
+                        <h1 class="text-2xl font-bold text-slate-900">Dashboard</h1>
+                        <p class="text-slate-500">Welcome back, Ogirima. You have 2 pending notifications.</p>
+                    </header>
+
+                    <!-- Stats Row -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <!-- Stat 1 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-blue-50 text-accent rounded-lg">
+                                    <i class="ph-fill ph-wallet text-xl"></i>
+                                </div>
+                                <span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded-full">+12%</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-slate-900">₦4,500</h3>
+                            <p class="text-sm text-slate-500 mt-1">Available Credits</p>
+                        </div>
+
+                        <!-- Stat 2 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-orange-50 text-orange-500 rounded-lg">
+                                    <i class="ph-fill ph-files text-xl"></i>
+                                </div>
+                                <span class="text-xs font-bold bg-orange-100 text-orange-700 px-2 py-1 rounded-full">Action Needed</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900">Topic Pending</h3>
+                            <p class="text-sm text-slate-500 mt-1">Submitted to Dr. Adebayo</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity Table -->
+                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 flex justify-between items-center">
+                            <h3 class="font-bold text-slate-900">Recent Transactions</h3>
+                            <button class="text-sm text-accent font-medium hover:underline">View All</button>
+                        </div>
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-slate-50 text-slate-500 font-medium">
+                                <tr>
+                                    <th class="px-6 py-4">Item</th>
+                                    <th class="px-6 py-4">Date</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4 text-right">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50/50 transition">
+                                    <td class="px-6 py-4 font-medium text-slate-900">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-red-100 flex items-center justify-center text-red-500"><i class="ph-fill ph-file-pdf"></i></div>
+                                            Maternal Health Vol. 2
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-500">Oct 24, 2025</td>
+                                    <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">Paid</span></td>
+                                    <td class="px-6 py-4 text-right font-bold text-slate-900">-₦1,500</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50/50 transition">
+                                    <td class="px-6 py-4 font-medium text-slate-900">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded bg-blue-100 flex items-center justify-center text-blue-500"><i class="ph-fill ph-bank"></i></div>
+                                            Library Fee Deposit
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-500">Oct 20, 2025</td>
+                                    <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">Success</span></td>
+                                    <td class="px-6 py-4 text-right font-bold text-green-600">+₦5,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 2. TOPICS TAB -->
+                <div id="tab-topics" class="page-transition hidden">
+                    <div class="max-w-2xl mx-auto">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-accent/10 text-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="ph-duotone ph-check-circle text-3xl"></i>
+                            </div>
+                            <h1 class="text-2xl font-bold text-slate-900">Project Clearance</h1>
+                            <p class="text-slate-500">Submit your 3 topics for departmental review.</p>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/50">
+                            <form onsubmit="event.preventDefault(); submitTopics();">
+                                <div class="mb-6">
+                                    <label class="block text-sm font-bold text-slate-900 mb-2">Select Supervisor</label>
+                                    <select class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-accent outline-none">
+                                        <option>Dr. Sarah Adebayo (Dept Head)</option>
+                                        <option>Prof. Musa Ibrahim</option>
+                                    </select>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="group">
+                                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Option 1</label>
+                                        <input required type="text" placeholder="Enter topic title..." class="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-accent outline-none group-focus-within:border-accent transition">
+                                    </div>
+                                    <div class="group">
+                                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Option 2</label>
+                                        <input required type="text" placeholder="Enter topic title..." class="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-accent outline-none group-focus-within:border-accent transition">
+                                    </div>
+                                    <div class="group">
+                                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Option 3</label>
+                                        <input required type="text" placeholder="Enter topic title..." class="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-accent outline-none group-focus-within:border-accent transition">
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 pt-6 border-t border-slate-100">
+                                    <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl hover:bg-slate-800 transition shadow-lg hover:shadow-xl">
+                                        Submit for Review
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3. LIBRARY TAB (Simple Placeholder) -->
+                <div id="tab-library" class="page-transition hidden">
+                   <h1 class="text-2xl font-bold text-slate-900 mb-6">Resource Library</h1>
+                   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                       <!-- Book Card -->
+                       <div class="bg-white rounded-xl border border-slate-200 overflow-hidden group cursor-pointer hover:shadow-lg transition">
+                           <div class="h-40 bg-slate-100 flex items-center justify-center text-slate-300 group-hover:scale-105 transition duration-500">
+                               <i class="ph-duotone ph-book-open text-4xl"></i>
+                           </div>
+                           <div class="p-4">
+                               <div class="flex justify-between items-center mb-2">
+                                   <span class="text-[10px] font-bold uppercase tracking-wider text-accent">Anatomy</span>
+                                   <span class="text-sm font-bold text-slate-900">₦2,000</span>
+                               </div>
+                               <h3 class="font-bold text-slate-800 leading-tight">Human Anatomy Vol. 1</h3>
+                               <p class="text-xs text-slate-500 mt-1">Dr. S. Ojo</p>
+                           </div>
+                       </div>
+                       <!-- Add more cards as needed -->
+                   </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Toast Notification System
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            // Icon selection
+            const icon = type === 'success' ? '<i class="ph-fill ph-check-circle text-green-500 text-xl"></i>' : '<i class="ph-fill ph-warning text-orange-500 text-xl"></i>';
+            
+            toast.className = `bg-white border border-slate-100 shadow-xl rounded-xl p-4 flex items-center gap-3 min-w-[300px] transform translate-x-full transition-all duration-300`;
+            toast.innerHTML = `
+                ${icon}
+                <div>
+                    <p class="text-sm font-bold text-slate-800">${message}</p>
+                </div>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Animate In
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-x-full');
+            });
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-x-full', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // 2. Navigation Logic
+        function handleLogin() {
+            const btn = document.querySelector('form button');
+            const originalText = btn.innerText;
+            
+            // Loading State
+            btn.innerHTML = '<i class="ph ph-spinner animate-spin text-xl"></i> Verifying...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+
+            setTimeout(() => {
+                document.getElementById('view-auth').classList.add('hidden');
+                document.getElementById('view-app').classList.remove('hidden');
+                showToast('Welcome back, Ogirima!');
+            }, 1500);
+        }
+
+        function nav(tabId, btnElement) {
+            // Update Tab Content
+            document.querySelectorAll('.page-transition').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Update Sidebar Styling
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('bg-slate-100', 'text-slate-900', 'font-medium', 'active-nav');
+                el.classList.add('text-slate-600');
+            });
+            btnElement.classList.add('bg-slate-100', 'text-slate-900', 'font-medium', 'active-nav');
+            btnElement.classList.remove('text-slate-600');
+        }
+
+        function submitTopics() {
+            const btn = document.querySelector('#tab-topics button');
+            btn.innerHTML = '<i class="ph ph-spinner animate-spin"></i> Submitting...';
+            
+            setTimeout(() => {
+                showToast('Topics sent to Dr. Adebayo for approval!');
+                btn.innerHTML = 'Submitted Successfully';
+                btn.classList.replace('bg-slate-900', 'bg-green-600');
+                
+                // Return to dashboard after delay
+                setTimeout(() => {
+                    nav('tab-dashboard', document.querySelector('.nav-item:first-child'));
+                    // Reset button
+                    btn.innerHTML = 'Submit for Review';
+                    btn.classList.replace('bg-green-600', 'bg-slate-900');
+                }, 1500);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
