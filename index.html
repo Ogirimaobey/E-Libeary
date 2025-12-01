@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIH | Ultimate Platform</title>
+    <title>KSCNM Obangede | Digital Campus</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,6 @@
     <style>
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-        
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -42,7 +41,7 @@
 
     <div id="view-auth" class="flex w-full h-full bg-white relative">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-brand/90 mix-blend-multiply"></div>
         </div>
 
@@ -50,15 +49,15 @@
             <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 md:p-12 rounded-2xl shadow-2xl max-w-lg w-full text-white">
                 <div class="text-center mb-8">
                     <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 mb-4 border border-white/30">
-                        <i class="ph-fill ph-student text-3xl"></i>
+                        <i class="ph-fill ph-first-aid text-3xl"></i>
                     </div>
-                    <h1 class="text-3xl font-bold tracking-tight">DIH Portal</h1>
-                    <p class="text-slate-300 mt-2 text-sm">Digitize. Monetize. Globalize.</p>
+                    <h1 class="text-2xl font-bold tracking-tight">KSCNM Obangede</h1>
+                    <p class="text-slate-300 mt-2 text-sm">Digital Campus & Research Hub</p>
                 </div>
 
                 <form onsubmit="event.preventDefault(); handleLogin();" class="space-y-5">
                     <div>
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-300">Student ID</label>
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-300">Matric Number</label>
                         <input type="text" value="KSCNM/NUR/25/084" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 mt-1 text-white placeholder-slate-400 focus:ring-2 focus:ring-white/50 outline-none font-mono" readonly>
                     </div>
                     <div>
@@ -66,9 +65,10 @@
                         <input type="password" value="password" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 mt-1 text-white focus:ring-2 focus:ring-white/50 outline-none">
                     </div>
                     <button type="submit" class="w-full bg-white text-brand font-bold py-3.5 rounded-lg hover:bg-slate-100 transition shadow-lg mt-4 text-sm uppercase tracking-wide">
-                        Secure Login
+                        Login to Portal
                     </button>
                 </form>
+                <p class="text-center text-[10px] text-slate-400 mt-6">Licensed to Kogi State College of Nursing & Midwifery</p>
             </div>
         </div>
     </div>
@@ -78,8 +78,8 @@
         
         <aside class="w-64 bg-brand text-white hidden md:flex flex-col shrink-0">
             <div class="p-6 border-b border-slate-700/50">
-                <span class="font-bold text-lg tracking-tight">DIH Portal</span>
-                <span class="block text-xs text-slate-400">Enterprise Edition</span>
+                <span class="font-bold text-lg tracking-tight">KSCNM Portal</span>
+                <span class="block text-xs text-slate-400">Obangede Campus</span>
             </div>
 
             <nav class="flex-1 p-4 space-y-1 overflow-y-auto hide-scroll">
@@ -90,18 +90,18 @@
 
                 <div class="text-xs font-bold text-slate-500 uppercase px-3 mb-2 mt-6">Academics</div>
                 <button onclick="nav('tab-library', this)" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition">
-                    <i class="ph ph-compass text-lg"></i> Research Library
+                    <i class="ph ph-compass text-lg"></i> Digital Library
                 </button>
                 <button onclick="nav('tab-topics', this)" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition">
-                    <i class="ph ph-check-circle text-lg"></i> Topic Approval
+                    <i class="ph ph-check-circle text-lg"></i> Project Clearance
                 </button>
                 <button onclick="nav('tab-supervisor', this)" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition">
                     <i class="ph ph-users-three text-lg"></i> My Supervisor
                 </button>
 
-                <div class="text-xs font-bold text-slate-500 uppercase px-3 mb-2 mt-6">Creator Studio</div>
+                <div class="text-xs font-bold text-slate-500 uppercase px-3 mb-2 mt-6">Publications</div>
                 <button onclick="nav('tab-publish', this)" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition">
-                    <i class="ph ph-pen-nib text-lg"></i> Publish Article
+                    <i class="ph ph-pen-nib text-lg"></i> Submit Article
                 </button>
             </nav>
 
@@ -110,11 +110,11 @@
                     <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center font-bold text-xs">OO</div>
                     <div>
                         <p class="text-sm font-bold">Ogirima Obey</p>
-                        <p class="text-[10px] text-slate-400">Basic Plan</p>
+                        <p class="text-[10px] text-slate-400">Nursing • 400L</p>
                     </div>
                 </div>
                 <button onclick="alert('Opening Payment Gateway for ₦15k...')" class="mt-3 w-full bg-gold text-white text-xs font-bold py-2 rounded shadow-lg hover:bg-yellow-600 transition">
-                    Upgrade to Premium (₦15k)
+                    Pay Library Fee (₦15k)
                 </button>
             </div>
         </aside>
@@ -122,7 +122,7 @@
         <main class="flex-1 flex flex-col h-full overflow-hidden relative">
             
             <header class="h-16 bg-white border-b border-slate-200 flex md:hidden items-center justify-between px-4 shrink-0">
-                <span class="font-bold text-brand">DIH Portal</span>
+                <span class="font-bold text-brand">KSCNM Portal</span>
                 <button class="text-2xl"><i class="ph ph-list"></i></button>
             </header>
 
@@ -130,18 +130,33 @@
                 
                 <div id="tab-dashboard" class="page-section block">
                     <header class="mb-8 px-4 md:px-0">
-                        <h1 class="text-2xl font-bold text-brand">Dashboard</h1>
-                        <p class="text-slate-500">Welcome back, Ogirima. Here is your academic overview.</p>
+                        <h1 class="text-2xl font-bold text-brand">Student Dashboard</h1>
+                        <p class="text-slate-500">Welcome back, Ogirima.</p>
                     </header>
+
+                    <div class="mx-4 md:mx-0 mb-8 bg-gradient-to-r from-blue-900 to-brand rounded-2xl p-6 text-white relative overflow-hidden shadow-lg">
+                        <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-6">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border border-white/30 shrink-0">
+                                <i class="ph-fill ph-megaphone text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Message from the Provost</h3>
+                                <p class="text-blue-100 text-sm italic max-w-2xl">
+                                    "We are committed to the digitalization of academic excellence at KSCNM Obangede. Use this portal to access world-class resources."
+                                </p>
+                                <p class="text-xs font-bold mt-2 uppercase tracking-wide text-gold">– Dr. Duro Anaza Joseph</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 px-4 md:px-0">
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                             <div class="flex justify-between items-start mb-4">
                                 <div class="p-2 bg-blue-50 text-accent rounded-lg"><i class="ph-fill ph-wallet text-xl"></i></div>
-                                <span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded-full">+12%</span>
+                                <span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded-full">Active</span>
                             </div>
                             <h3 class="text-3xl font-bold text-slate-900">₦4,500</h3>
-                            <p class="text-sm text-slate-500 mt-1">Available Library Credits</p>
+                            <p class="text-sm text-slate-500 mt-1">Available Credits</p>
                         </div>
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                             <div class="flex justify-between items-start mb-4">
@@ -149,7 +164,7 @@
                                 <span class="text-xs font-bold bg-orange-100 text-orange-700 px-2 py-1 rounded-full">Action Needed</span>
                             </div>
                             <h3 class="text-xl font-bold text-slate-900">Topic Pending</h3>
-                            <p class="text-sm text-slate-500 mt-1">Submitted to Dr. Adebayo</p>
+                            <p class="text-sm text-slate-500 mt-1">Awaiting Dept Approval</p>
                         </div>
                     </div>
 
@@ -175,12 +190,6 @@
                                         <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">Paid</span></td>
                                         <td class="px-6 py-4 text-right font-bold text-slate-900">-₦1,500</td>
                                     </tr>
-                                    <tr class="hover:bg-slate-50/50">
-                                        <td class="px-6 py-4 font-bold text-slate-800">Library Fee Deposit</td>
-                                        <td class="px-6 py-4 text-slate-500">Oct 20, 2025</td>
-                                        <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">Success</span></td>
-                                        <td class="px-6 py-4 text-right font-bold text-green-600">+₦5,000</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -191,8 +200,8 @@
                 <div id="tab-library" class="page-section hidden space-y-8">
                     <div class="flex flex-col md:flex-row justify-between items-end md:items-center px-4 md:px-0 gap-4">
                         <div>
-                            <h1 class="text-2xl font-bold text-brand">Explore Research</h1>
-                            <p class="text-sm text-slate-500">Search 12,400+ papers, theses, and textbooks.</p>
+                            <h1 class="text-2xl font-bold text-brand">KSCNM E-Library</h1>
+                            <p class="text-sm text-slate-500">Access approved theses and textbooks.</p>
                         </div>
                         <div class="relative w-full md:w-96">
                             <i class="ph ph-magnifying-glass absolute left-3 top-2.5 text-slate-400"></i>
@@ -204,7 +213,7 @@
                         <img src="https://images.unsplash.com/photo-1576091160550-2187d80aeff6?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-8 text-white max-w-2xl">
-                            <span class="bg-gold text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full mb-3 inline-block">🏆 Best Project 2025</span>
+                            <span class="bg-gold text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full mb-3 inline-block">🏆 Best KSCNM Project 2025</span>
                             <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-2">The Impact of Telemedicine in Rural Kogi State</h2>
                             <p class="text-slate-200 text-sm line-clamp-2 mb-4">An in-depth analysis of how mobile health units reduced maternal mortality rates by 40% in Obangede district.</p>
                             <div class="flex items-center gap-4">
@@ -250,7 +259,7 @@
                             <div class="mb-6">
                                 <label class="block text-sm font-bold text-slate-900 mb-2">Select Supervisor</label>
                                 <select class="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none">
-                                    <option>Dr. Sarah Adebayo (Dept Head)</option>
+                                    <option>Dr. Sarah Adebayo</option>
                                     <option>Prof. Musa Ibrahim</option>
                                 </select>
                             </div>
@@ -315,7 +324,7 @@
                     <div class="bg-gradient-to-r from-brand to-blue-900 rounded-2xl p-8 text-white mb-8 relative overflow-hidden">
                         <div class="relative z-10">
                             <h1 class="text-2xl font-bold mb-2">Publish. Earn. Rank.</h1>
-                            <p class="text-slate-300 max-w-xl text-sm leading-relaxed">Publish your articles on the DIH Global Network. Earn 50% royalties.</p>
+                            <p class="text-slate-300 max-w-xl text-sm leading-relaxed">Publish your articles on the KSCNM Global Network. Earn 50% royalties.</p>
                         </div>
                         <i class="ph-duotone ph-globe-hemisphere-west absolute -right-10 -bottom-10 text-9xl opacity-20 text-white"></i>
                     </div>
@@ -353,7 +362,7 @@
     </div>
 
     <script>
-        // 1. Toast Notification Logic (Restored)
+        // 1. Toast Notification Logic
         function showToast(message, type = 'success') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
@@ -404,14 +413,12 @@
             btn.innerHTML = '<i class="ph ph-spinner animate-spin"></i> Sending...';
             
             setTimeout(() => {
-                showToast('Topics sent to Dr. Adebayo!');
+                showToast('Topics sent to Dept Head!');
                 btn.innerHTML = 'Submitted Successfully';
                 btn.classList.replace('bg-brand', 'bg-green-600');
                 
                 setTimeout(() => {
-                    // Redirect to dashboard
                     nav('tab-dashboard', document.querySelector('.nav-item:first-child'));
-                    // Reset Button
                     btn.innerHTML = 'Submit for Review';
                     btn.classList.replace('bg-green-600', 'bg-brand');
                 }, 1500);
