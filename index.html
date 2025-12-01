@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
@@ -33,6 +32,13 @@
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Selection Border Animation */
+        .review-card.selected {
+            border-color: #3B82F6;
+            background-color: #EFF6FF;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -1px rgba(59, 130, 246, 0.06);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 h-screen overflow-hidden antialiased">
@@ -235,7 +241,7 @@
                             <div class="group cursor-pointer">
                                 <div class="aspect-[2/3] bg-slate-200 rounded-lg overflow-hidden relative shadow-sm group-hover:shadow-md transition">
                                     <div class="w-full h-full bg-slate-800 flex items-center justify-center text-white p-4 text-center">
-                                        <span class="text-xs font-bold">Project Guide Template</span>
+                                        <span class="text-xs font-bold">Project Guide</span>
                                     </div>
                                 </div>
                                 <h4 class="font-bold text-sm mt-2 text-slate-800 line-clamp-1">Thesis Template</h4>
@@ -265,24 +271,13 @@
                             </div>
 
                             <div class="space-y-4">
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Topic 1</label>
-                                    <input required type="text" class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Topic 2</label>
-                                    <input required type="text" class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Topic 3</label>
-                                    <input required type="text" class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none">
-                                </div>
+                                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Topic 1</label><input required type="text" class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none"></div>
+                                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Topic 2</label><input required type="text" class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none"></div>
+                                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Topic 3</label><input required type="text" class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none"></div>
                             </div>
 
                             <div class="mt-8 pt-6 border-t border-slate-100">
-                                <button type="submit" id="btn-submit-topic" class="w-full bg-brand text-white font-bold py-3.5 rounded-lg hover:bg-slate-800 transition">
-                                    Submit for Review
-                                </button>
+                                <button type="submit" id="btn-submit-topic" class="w-full bg-brand text-white font-bold py-3.5 rounded-lg hover:bg-slate-800 transition">Submit for Review</button>
                             </div>
                         </form>
                     </div>
@@ -301,9 +296,7 @@
                                     <h2 class="text-xl font-bold text-brand">Dr. Sarah Adebayo</h2>
                                     <p class="text-sm text-slate-500 font-medium">Senior Lecturer, Dept of Nursing</p>
                                 </div>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">
-                                    <div class="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div> Online Now
-                                </span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold"><div class="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div> Online Now</span>
                             </div>
                             <hr class="my-6 border-slate-100">
                             <div>
@@ -313,7 +306,7 @@
                                         <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-sm"><i class="ph-bold ph-check"></i></div>
                                         <div class="flex-1"><p class="text-sm font-bold text-slate-800">Topic Approval</p><p class="text-xs text-slate-500">Approved</p></div>
                                     </div>
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -324,34 +317,48 @@
                     <div class="bg-gradient-to-r from-brand to-blue-900 rounded-2xl p-8 text-white mb-8 relative overflow-hidden">
                         <div class="relative z-10">
                             <h1 class="text-2xl font-bold mb-2">Publish. Earn. Rank.</h1>
-                            <p class="text-slate-300 max-w-xl text-sm leading-relaxed">Publish your articles on the KSCNM Global Network. Earn 50% royalties.</p>
+                            <p class="text-slate-300 max-w-xl text-sm leading-relaxed">Publish your articles on the KSCNM Global Network. Earn royalties on every download.</p>
                         </div>
                         <i class="ph-duotone ph-globe-hemisphere-west absolute -right-10 -bottom-10 text-9xl opacity-20 text-white"></i>
                     </div>
 
                     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
                         <h3 class="font-bold text-brand mb-6">Create New Article</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                            <div onclick="selectReview('internal')" id="card-internal" class="review-card selected border-2 border-slate-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition bg-white">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="p-2 bg-slate-100 rounded-lg text-slate-600"><i class="ph-fill ph-buildings text-xl"></i></div>
+                                    <span class="text-xs font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Standard</span>
+                                </div>
+                                <h3 class="font-bold text-slate-900">Institutional Review</h3>
+                                <p class="text-xs text-slate-500 mt-1">Vetted by KSCNM Faculty.</p>
+                                <p class="text-lg font-bold text-brand mt-3">₦3,000</p>
+                            </div>
+                            
+                            <div onclick="selectReview('external')" id="card-external" class="review-card border-2 border-slate-200 rounded-xl p-4 cursor-pointer hover:border-blue-400 transition bg-white">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="p-2 bg-blue-50 text-blue-600 rounded-lg"><i class="ph-fill ph-globe text-xl"></i></div>
+                                    <span class="text-xs font-bold bg-blue-100 text-blue-600 px-2 py-1 rounded-full">Premium</span>
+                                </div>
+                                <h3 class="font-bold text-slate-900">Global Expert Review</h3>
+                                <p class="text-xs text-slate-500 mt-1">Vetted by F-Bridge Scholars.</p>
+                                <p class="text-lg font-bold text-brand mt-3">₦5,000</p>
+                            </div>
+                        </div>
+
                         <form class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Article Title</label>
-                                    <input type="text" placeholder="e.g., Trends in Neonatal Care 2025" class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Category</label>
-                                    <select class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none bg-white">
-                                        <option>Nursing</option>
-                                        <option>Public Health</option>
-                                    </select>
-                                </div>
+                                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Article Title</label><input type="text" placeholder="e.g., Trends in Neonatal Care 2025" class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none"></div>
+                                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Category</label><select class="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand outline-none bg-white"><option>Nursing</option><option>Public Health</option></select></div>
                             </div>
                             <div class="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center cursor-pointer hover:bg-slate-50 transition">
                                 <i class="ph ph-upload-simple text-3xl text-slate-400 mb-2"></i>
                                 <p class="text-sm font-bold text-brand">Upload PDF File</p>
                             </div>
                             <div class="flex items-center justify-between pt-4 border-t border-slate-100">
-                                <div class="text-xs text-slate-500">Processing Fee: <span class="font-bold text-brand text-sm">₦2,000</span></div>
-                                <button type="button" onclick="alert('Proceeding to Paystack...')" class="bg-brand text-white font-bold py-3 px-8 rounded-lg hover:bg-slate-800 transition">Pay & Publish</button>
+                                <div class="text-xs text-slate-500">Total Fee: <span id="price-display" class="font-bold text-brand text-lg">₦3,000</span></div>
+                                <button type="button" onclick="alert('Proceeding to Paystack...')" class="bg-brand text-white font-bold py-3 px-8 rounded-lg hover:bg-slate-800 transition">Proceed to Pay</button>
                             </div>
                         </form>
                     </div>
@@ -362,21 +369,16 @@
     </div>
 
     <script>
-        // 1. Toast Notification Logic
+        // 1. Toast
         function showToast(message, type = 'success') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             const icon = type === 'success' ? '<i class="ph-fill ph-check-circle text-green-500 text-xl"></i>' : '<i class="ph-fill ph-warning text-orange-500 text-xl"></i>';
-            
             toast.className = `bg-white border border-slate-100 shadow-2xl rounded-xl p-4 flex items-center gap-3 min-w-[300px] transform translate-x-full transition-all duration-300 pointer-events-auto`;
             toast.innerHTML = `${icon}<div><p class="text-sm font-bold text-slate-800">${message}</p></div>`;
-            
             container.appendChild(toast);
             requestAnimationFrame(() => toast.classList.remove('translate-x-full'));
-            setTimeout(() => {
-                toast.classList.add('translate-x-full', 'opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            setTimeout(() => { toast.classList.add('translate-x-full', 'opacity-0'); setTimeout(() => toast.remove(), 300); }, 3000);
         }
 
         // 2. Navigation
@@ -384,7 +386,6 @@
             const btn = document.querySelector('form button');
             btn.innerHTML = '<i class="ph ph-spinner animate-spin"></i> Verifying...';
             btn.classList.add('opacity-75');
-            
             setTimeout(() => {
                 document.getElementById('view-auth').classList.add('hidden');
                 document.getElementById('view-app').classList.remove('hidden');
@@ -395,15 +396,10 @@
         function nav(tabId, el) {
             document.querySelectorAll('.page-section').forEach(div => div.classList.remove('block'));
             document.querySelectorAll('.page-section').forEach(div => div.classList.add('hidden'));
-            
             const target = document.getElementById(tabId);
             target.classList.remove('hidden');
             target.classList.add('block', 'fade-in');
-
-            document.querySelectorAll('.nav-item').forEach(btn => {
-                btn.classList.remove('bg-white/10', 'text-white', 'active-nav');
-                btn.classList.add('text-slate-400');
-            });
+            document.querySelectorAll('.nav-item').forEach(btn => { btn.classList.remove('bg-white/10', 'text-white', 'active-nav'); btn.classList.add('text-slate-400'); });
             el.classList.remove('text-slate-400');
             el.classList.add('bg-white/10', 'text-white', 'active-nav');
         }
@@ -411,18 +407,31 @@
         function submitTopics() {
             const btn = document.getElementById('btn-submit-topic');
             btn.innerHTML = '<i class="ph ph-spinner animate-spin"></i> Sending...';
-            
             setTimeout(() => {
                 showToast('Topics sent to Dept Head!');
                 btn.innerHTML = 'Submitted Successfully';
                 btn.classList.replace('bg-brand', 'bg-green-600');
-                
-                setTimeout(() => {
-                    nav('tab-dashboard', document.querySelector('.nav-item:first-child'));
-                    btn.innerHTML = 'Submit for Review';
-                    btn.classList.replace('bg-green-600', 'bg-brand');
-                }, 1500);
+                setTimeout(() => { nav('tab-dashboard', document.querySelector('.nav-item:first-child')); btn.innerHTML = 'Submit for Review'; btn.classList.replace('bg-green-600', 'bg-brand'); }, 1500);
             }, 1500);
+        }
+
+        // 3. Review Selection Logic (Pricing Updated)
+        function selectReview(type) {
+            const cardInt = document.getElementById('card-internal');
+            const cardExt = document.getElementById('card-external');
+            const price = document.getElementById('price-display');
+
+            if (type === 'internal') {
+                cardInt.classList.add('selected', 'border-blue-500', 'bg-blue-50');
+                cardExt.classList.remove('selected', 'border-blue-500', 'bg-blue-50');
+                cardExt.classList.add('bg-white');
+                price.innerText = '₦3,000';
+            } else {
+                cardExt.classList.add('selected', 'border-blue-500', 'bg-blue-50');
+                cardInt.classList.remove('selected', 'border-blue-500', 'bg-blue-50');
+                cardInt.classList.add('bg-white');
+                price.innerText = '₦5,000';
+            }
         }
     </script>
 </body>
